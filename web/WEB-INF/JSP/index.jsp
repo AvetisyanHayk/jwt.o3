@@ -16,7 +16,7 @@
             <form>
                 <label for="year">Year</label>
                 <select id="year" name="year">
-                    <option>-</option>
+                    <option value="">-</option>
                     <c:forEach items="${years}" var="year">
                         <option value="${year}"<c:if test="${year eq param.year}"> selected="selected"</c:if>>${year}</option>
                     </c:forEach>
@@ -24,7 +24,7 @@
                 
                 <label for="genre">Genre</label>
                 <select id="genreid" name="genreid">
-                    <option>-</option>
+                    <option value="">-</option>
                     <c:forEach items="${genres}" var="genre">
                         <option value="${genre.id}"<c:if test="${genre.id eq param.genreid}"> selected="selected"</c:if>>${genre.name}</option>
                     </c:forEach>
