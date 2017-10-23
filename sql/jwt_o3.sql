@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `jwt_o3` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `jwt_o3`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: jwt_o3
@@ -50,13 +48,13 @@ DROP TABLE IF EXISTS `movie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `movie` (
-  `id` int(9) unsigned NOT NULL,
+  `id` int(9) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL,
   `year` int(11) NOT NULL,
   `rating` tinyint(2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +63,7 @@ CREATE TABLE `movie` (
 
 LOCK TABLES `movie` WRITE;
 /*!40000 ALTER TABLE `movie` DISABLE KEYS */;
-INSERT INTO `movie` VALUES (1,'The Hunger Games',2012,3),(2,'Star Trek Beyond',2016,2),(3,'Divergent',2014,3),(4,'Harry Potter and the Philosopher\'s Stone',2002,4),(14,'Resident Evil',1964,5);
+INSERT INTO `movie` VALUES (1,'The Hunger Games',2012,3),(2,'Star Trek Beyond',2016,2),(3,'Divergent',2014,3),(4,'Harry Potter and the Philosopher\'s Stone',2002,4),(14,'Resident Evil',1964,5),(15,'Edge of Tomorrow',2014,10);
 /*!40000 ALTER TABLE `movie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-23 19:23:03
+-- Dump completed on 2017-10-23 19:29:08

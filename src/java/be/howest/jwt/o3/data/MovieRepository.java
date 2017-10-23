@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,6 +32,22 @@ public class MovieRepository extends AbstractRepository {
             throw new DBException(ex);
         }
         return null;
+    }
+    
+    public List<Movie> findByYear(int year) {
+        List<Movie> entities = new ArrayList<>();
+        try(Connection connection = dataSource.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_YEAR)) {
+            statement.setInt(1, year);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    entities.add(build(resultSet));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DBException(ex);
+        }
+        return entities;
     }
  
     private Movie build(ResultSet resultSet) throws SQLException {

@@ -37,9 +37,14 @@ public class IndexServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Genre> genres = genreRepo.findAll();
         Movie movie = movieRepo.read(1L);
-        String genresString = genres.stream().map(Genre::getName)
+        List<Movie> movies = movieRepo.findByYear(2014);
+        String genresString = genres.stream().map(Genre::toString)
                 .reduce("", (previous, current) -> previous + "\n" + current);
-        response.getWriter().append(movie.toString()).append(genresString).println();
+        String moviesString = movies.stream().map(Movie::toString)
+                .reduce("", (previous, current) -> previous + "\n" + current);
+        response.getWriter().append(movie.toString())
+                .append(genresString)
+                .append(moviesString).println();
     }
     
     private void writeObject(java.io.ObjectOutputStream stream) throws java.io.IOException {
