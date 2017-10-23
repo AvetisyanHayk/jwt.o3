@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `jwt_o3` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `jwt_o3`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: jwt_o3
@@ -155,4 +157,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-23 19:29:08
+-- Dump completed on 2017-10-23 19:32:04
