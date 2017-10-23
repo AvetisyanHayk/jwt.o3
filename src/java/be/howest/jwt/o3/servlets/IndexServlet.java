@@ -22,6 +22,8 @@ import javax.sql.DataSource;
 public class IndexServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+
+    private static final String VIEW = "/WEB-INF/JSP/index.jsp";
     
     private final transient GenreRepository genreRepo = new GenreRepository();
     private final transient MovieRepository movieRepo = new MovieRepository();
@@ -35,22 +37,9 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Genre> genres = genreRepo.findAll();
-        Movie movie = movieRepo.read(1L);
-        List<Movie> movies = movieRepo.findByYear(2014);
-        List<Integer> years = movieRepo.findDistinctYears();
-        String genresString = genres.stream().map(Genre::toString)
-                .reduce("", (previous, current) -> previous + "\n" + current);
-        String moviesString = movies.stream().map(Movie::toString)
-                .reduce("", (previous, current) -> previous + "\n" + current);
-        String yearsString = years.stream().map(String::valueOf)
-                .reduce("", (previous, current) -> previous + "\n" + current);
-        response.getWriter().append(movie.toString())
-                .append(genresString)
-                .append(moviesString)
-                .append(yearsString).println();
-        
-        
+        request.setAttribute("years", movieRepo.findDistinctYears());
+        request.setAttribute("genres", genreRepo.findAll());
+        request.getRequestDispatcher(VIEW).forward(request, response);
     }
     
     private void writeObject(java.io.ObjectOutputStream stream) throws java.io.IOException {
