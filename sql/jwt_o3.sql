@@ -53,7 +53,8 @@ CREATE TABLE `movie` (
   `id` int(9) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL,
   `year` int(11) NOT NULL,
-  `rating` tinyint(2) NOT NULL,
+  `rating` tinyint(2) unsigned NOT NULL,
+  `count` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
@@ -65,7 +66,7 @@ CREATE TABLE `movie` (
 
 LOCK TABLES `movie` WRITE;
 /*!40000 ALTER TABLE `movie` DISABLE KEYS */;
-INSERT INTO `movie` VALUES (1,'The Hunger Games',2012,3),(2,'Star Trek Beyond',2016,2),(3,'Divergent',2014,3),(4,'Harry Potter and the Philosopher\'s Stone',2002,4),(14,'Resident Evil',1964,5),(15,'Edge of Tomorrow',2014,10);
+INSERT INTO `movie` VALUES (1,'The Hunger Games',2012,3,0),(2,'Star Trek Beyond',2016,2,0),(3,'Divergent',2014,3,0),(4,'Harry Potter and the Sorcerer\'s Stone',2002,4,0),(14,'Resident Evil: Apocalypse',1964,5,0),(15,'Edge of Tomorrow',2014,10,0);
 /*!40000 ALTER TABLE `movie` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,6 +97,32 @@ LOCK TABLES `movie_genre` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `reservation`
+--
+
+DROP TABLE IF EXISTS `reservation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reservation` (
+  `id` int(9) unsigned NOT NULL AUTO_INCREMENT,
+  `userid` int(9) unsigned NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  CONSTRAINT `fk_reservation$userid` FOREIGN KEY (`id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reservation`
+--
+
+LOCK TABLES `reservation` WRITE;
+/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -106,10 +133,12 @@ CREATE TABLE `user` (
   `id` int(9) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
   `password` varchar(512) NOT NULL,
-  `role` enum('A','U') NOT NULL,
+  `userroleid` int(9) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  KEY `fk_user$userroleid_idx` (`userroleid`),
+  CONSTRAINT `fk_user$userroleid` FOREIGN KEY (`userroleid`) REFERENCES `userrole` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -157,4 +186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-23 19:32:04
+-- Dump completed on 2017-10-23 21:22:31
