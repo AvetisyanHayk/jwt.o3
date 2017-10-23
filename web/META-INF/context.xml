@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/oefening3">
+    <Resource name="jdbc/jwto3db"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/jwt_o3?useSSL=false"
+        username="student"
+        password="student"
+        closeMethod="close"/>
+</Context>
