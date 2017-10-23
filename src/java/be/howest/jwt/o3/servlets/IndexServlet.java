@@ -38,13 +38,19 @@ public class IndexServlet extends HttpServlet {
         List<Genre> genres = genreRepo.findAll();
         Movie movie = movieRepo.read(1L);
         List<Movie> movies = movieRepo.findByYear(2014);
+        List<Integer> years = movieRepo.findDistinctYears();
         String genresString = genres.stream().map(Genre::toString)
                 .reduce("", (previous, current) -> previous + "\n" + current);
         String moviesString = movies.stream().map(Movie::toString)
                 .reduce("", (previous, current) -> previous + "\n" + current);
+        String yearsString = years.stream().map(String::valueOf)
+                .reduce("", (previous, current) -> previous + "\n" + current);
         response.getWriter().append(movie.toString())
                 .append(genresString)
-                .append(moviesString).println();
+                .append(moviesString)
+                .append(yearsString).println();
+        
+        
     }
     
     private void writeObject(java.io.ObjectOutputStream stream) throws java.io.IOException {
