@@ -18,13 +18,6 @@ public class FilterMap {
         }
     }
     
-    private String firstKey() {
-        if (filters.isEmpty()) {
-            return "";
-        }
-        return filters.keySet().toArray(new String[filters.size()])[0];
-    }
-    
     @Override
     public String toString() {
         if (filters.isEmpty()) {

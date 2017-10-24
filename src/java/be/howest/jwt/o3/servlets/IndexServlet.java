@@ -7,6 +7,7 @@ import be.howest.jwt.o3.data.SingleFilter;
 import be.howest.jwt.o3.data.SingleFilterOperator;
 import be.howest.jwt.o3.genre.Movie;
 import be.howest.jwt.o3.pagination.Page;
+import be.howest.jwt.o3.pagination.Pagination;
 import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -39,18 +40,11 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        request.setAttribute("years", movieRepo.findDistinctYears());
-//        request.setAttribute("genres", genreRepo.findAll());
-//        request.getRequestDispatcher(VIEW).forward(request, response);
-        Page<Movie> page = new Page<>();
-        FilterMap filterMap = new FilterMap();
-        filterMap.addFilter(new SingleFilter("title", "%in%", SingleFilterOperator.LIKE));
-        page = movieRepo.findAll(page, filterMap);
-        response.getWriter().append(
-                page.getEntities().stream().map(Movie::toString)
-                .reduce("", (previous, current)
-                        -> (("".equals(previous)) ? previous : previous + "\n") + current)
-        ).append("\n").append(String.valueOf(page.getTotalEntities())).println();
+        request.setAttribute("sortOrderKeys", MovieRepository.PAGE_SORT.getKeys());
+        request.setAttribute("perPageTemplates", Pagination.PAGE_OFFSET_LIST);
+        request.setAttribute("years", movieRepo.findDistinctYears());
+        request.setAttribute("genres", genreRepo.findAll());
+        request.getRequestDispatcher(VIEW).forward(request, response);
     }
     
     private void writeObject(java.io.ObjectOutputStream stream) throws java.io.IOException {

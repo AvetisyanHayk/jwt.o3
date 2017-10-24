@@ -23,6 +23,10 @@ public class PageSort {
         }
     }
     
+    public Set<String> getKeys() {
+        return sortOrderMap.keySet();
+    }
+    
     public void add(String key, int columnNumber, SortOrder sortOrder) {
         Column column = new Column(columnNumber, sortOrder);
         add(key, column);
