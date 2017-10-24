@@ -7,6 +7,7 @@ body {
     font-family: "Manuale", serif;
     font-size: 1rem;
     line-height: 100%;
+    background-color: #051916;
 }
 
 header {
@@ -20,6 +21,7 @@ h1 {
     margin-left: 15px;
     margin-top: 15px;
     margin-bottom: 15px;
+    color: #fff;
 }
 
 aside {
@@ -40,7 +42,7 @@ aside label {
 }
 
 aside .input-label {
-    color: #fff;
+    
 }
 
 .input {
@@ -120,26 +122,15 @@ a.button {
     text-align: right;
 }
 
-.button-ghost-danger-inverse {
+.button-ghost {
     background-color: transparent;
     border: none;
-    color: #fff;
+    color: #051916;
     font-size: 1.1rem;
 }
 
-.button-ghost-danger-inverse:enabled:hover {
-    color: #f1b4b4;
-}
-
-.button-ghost-warning-inverse {
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 1.1rem;
-}
-
-.button-ghost-warning-inverse:enabled:hover {
-    color: moccasin;
+.button-ghost:enabled:hover {
+    color: #015e7c;
 }
 
 @media screen and (min-width: 801px) {
