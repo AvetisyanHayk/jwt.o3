@@ -13,11 +13,11 @@
             <form>
                 <aside>
                     <button type="submit" class="button button-primary"><i class="fa fa-fw fa-search"></i> Search</button>
-                    <button type="reset" class="button button-ghost-warning-inverse"><i class="fa fa-fw fa-reply"></i> Reset</button>
-                    <a href="<c:url value='/'/>" class="button button-ghost-warning-inverse"><i class="fa fa-fw fa-remove"></i> Filters</a>
+                    <button type="reset" class="button button-ghost"><i class="fa fa-fw fa-reply"></i> Reset</button>
+                    <a href="<c:url value='/'/>" class="button button-ghost"><i class="fa fa-fw fa-remove"></i> Filters</a>
 
-                    <label for="keyword" class="input-label">Keyword</label>
-                    <input type="text" id="keyword" name="keyword" placeholder="Keyword" value="${param.keyword}" class="input"/>
+                    <label for="title" class="input-label">Movie Title</label>
+                    <input type="text" id="title" name="title" placeholder="Movie Title" value="${param.title}" class="input"/>
 
                     <fieldset class="filter-box">
                         <legend><i class="fa fa-fw fa-calendar"></i> Year</legend>
@@ -50,8 +50,8 @@
                             </c:forEach>
                     </fieldset>
                     <button type="submit" class="button button-primary"><i class="fa fa-fw fa-search"></i> Search</button>
-                    <button type="reset" class="button button-ghost-warning-inverse"><i class="fa fa-fw fa-reply"></i> Reset</button>
-                    <a href="<c:url value='/'/>" class="button button-ghost-warning-inverse"><i class="fa fa-fw fa-remove"></i> Filters</a>
+                    <button type="reset" class="button button-ghost"><i class="fa fa-fw fa-reply"></i> Reset</button>
+                    <a href="<c:url value='/'/>" class="button button-ghost"><i class="fa fa-fw fa-remove"></i> Filters</a>
 
                 </aside>
 
